@@ -1,104 +1,154 @@
-<div align="center">
-  <img src="https://via.placeholder.com/120x120/121A2B/2DD4A8?text=TL" alt="TrustLayer AI Logo" width="120" />
-  <h1>🛡️ TrustLayer AI</h1>
-  <p><strong>Fintech-Grade Transaction Safety & Fraud Prevention Infrastructure</strong></p>
-  
-  <p>
-    <a href="#the-problem"><img src="https://img.shields.io/badge/Track-Fintech-2DD4A8?style=for-the-badge&logo=moneymarket" alt="Track: Fintech"></a>
-    <a href="#powered-by-nitrostack"><img src="https://img.shields.io/badge/Framework-NitroStack_SDK-F0A94E?style=for-the-badge&logo=typescript" alt="NitroStack"></a>
-    <a href="#license"><img src="https://img.shields.io/badge/Status-Hackathon_Submission-4CAF50?style=for-the-badge" alt="Status"></a>
-  </p>
+Here is the complete, properly formatted, ready-to-paste `README.md` file for your GitHub repository:
 
-  <p><em>Built for the NitroStack × Amrita University Hackathon</em></p>
-</div>
+```markdown
+# 🛡️ TrustLayer AI
+> **Next-Generation Transaction Safety & Fraud Prevention Infrastructure** > *Built exclusively for the NitroStack × Amrita University Hackathon (Fintech Track)*
 
 ---
 
-## 🚨 The Problem
+## 🚨 The Fintech Problem: Why Existing Systems Fail
 
-In the modern digital economy, Peer-to-Peer (P2P) marketplaces (like OLX, Facebook Marketplace) are plagued by sophisticated financial fraud. Millions of dollars are lost annually to scammers utilizing advanced manipulation tactics:
-* **QR Inversion Scams:** Scammers send a `upi://pay` QR code, claiming it is for a "refund" or "advance payment," tricking victims into authorizing a deduction from their own accounts.
-* **Off-Platform Diversion (P3 Interception):** Scammers lure victims off the secure platform to WhatsApp or Telegram where moderation tools cannot protect them.
-* **Price Manipulation:** Scammers list fake products at artificially low prices to trigger FOMO (Fear Of Missing Out) and urgency.
+In the booming Peer-to-Peer (P2P) digital economy (e.g., OLX, Facebook Marketplace), buyers transact directly with strangers. The current security paradigm on these platforms relies entirely on **passive, generic warnings** (e.g., *"Do not share OTP"*).
 
-Existing platforms lack active, context-aware intervention. They rely on passive warnings that users blindly ignore.
+This approach has fundamentally failed because scammers use advanced psychological manipulation (urgency, authority) to induce "warning fatigue," causing victims to ignore static banners. The result is millions lost to:
 
----
+* **Semantic QR Inversions:** Scammers disguise `upi://pay` requests as "refunds," tricking victims into authorizing debits from their own accounts.
+* **Platform Diversion (P3 Interception):** Scammers lure victims off-platform to unmoderated channels (WhatsApp, Telegram) to execute the fraud.
+* **Price Manipulation:** Scammers exploit FOMO by listing high-value items at impossible prices.
 
-## 💡 The Solution: TrustLayer AI
-
-**TrustLayer AI** is an invisible, real-time **Fintech Security Copilot**. It injects directly into existing marketplaces via a browser extension and acts as a specialized security layer.
-
-Instead of generic chat bots, TrustLayer utilizes a **Multi-Agent Architecture** to evaluate listings, cross-reference live market pricing, verify WHOIS domain records, and decode UPI payloads in real-time. If it detects a highly probable scam, it executes **Bounded Autonomy** to intervene, injecting verification challenges directly into the chat or rendering unmissable financial fraud alerts.
+> **The Gap:** There is no infrastructure that provides active, context-aware intervention at the exact moment a scam is occurring.
 
 ---
 
-## 🛠️ Powered by NitroStack
+## 💡 The Novel Solution: TrustLayer AI
 
-This project is built strictly around the **official `@nitrostack/core` TypeScript SDK**, utilizing its most powerful Agentic capabilities:
+**TrustLayer AI** flips the security paradigm from *Passive Warning* to **Active Intervention**.
 
-1. **`@Injectable()` & Dependency Injection:** The architecture is decoupled into specific domains (`ListingService`, `PaymentService`, `IdentityService`) managed natively by the NitroStack DI container.
-2. **`@Tool()` Decorators:** We expose precise, typed Agentic capabilities (e.g., `qrDirectionVerify`, `priceAnomalyCheck`) strictly validated by **Zod schemas**.
-3. **Execution Context:** Every tool invocation utilizes NitroStack's `ExecutionContext` to track tracing, logging, and transaction lifecycles.
-4. **Bounded Autonomy:** Instead of an LLM freely hallucinating decisions directly to the user, our NitroStack Agents emit structured mathematical `Claims`. A central `PolicyService` performs **Evidence Fusion**, calculating posterior risk probabilities before taking autonomous action.
+It operates as an invisible, real-time Fintech Security Copilot that injects directly into the DOM of existing marketplaces. Powered by a Multi-Agent NitroStack backend, it doesn't just read text—it understands the intent of the transaction. When a high-probability scam is detected, TrustLayer executes **Bounded Autonomy** to dynamically halt the user, inject verification challenges into the chat, or render highly specific financial fraud alerts that cannot be ignored.
 
 ---
 
-## 🏗️ Architecture & Agent Workflow
+## 🏆 What Makes This Unique? (Core Innovations)
 
-![TrustLayer AI Architecture](architecture.png)
+TrustLayer AI introduces four novel engineering approaches to P2P security:
+
+### 1. 💳 Semantic QR Inversion Detection (The Money Guard)
+* **The Innovation:** Traditional systems cannot scan QR codes inside chats. TrustLayer extracts hidden QR payloads from the DOM, decodes the `upi://pay` string, and uses NitroStack Agents to cross-reference the direction of the money flow with the human conversation.
+* **The Uniqueness:** If the seller types *"Scan this for your refund,"* but the QR code actually requests a payment, TrustLayer immediately detects the semantic inversion and flags a **CRITICAL financial fraud alert**, stopping UPI scams before the PIN is entered.
+
+### 2. 📸 Autonomous Physical-World Verification (In-Platform P1)
+* **The Innovation:** To prove a seller actually owns an item, TrustLayer introduces autonomous "Friction." It uses JavaScript to physically type a challenge (e.g., *"Upload a photo with code TL-8472"*) into the seller's chat box.
+* **The Uniqueness:** It utilizes a DOM `MutationObserver` to watch for the seller's image upload. Once uploaded, the image is piped through live `Tesseract.js` OCR (Optical Character Recognition) to verify the physical code exists in the real world. If verified, the Policy Engine dynamically recalculates the risk score to "Safe."
+
+### 3. 🔒 "Zero-Knowledge" Privacy-First Architecture
+* **The Innovation:** Scraping DOM data raises massive privacy concerns. TrustLayer solves this by implementing in-browser cryptographic hashing.
+* **The Uniqueness:** Before any phone number or email leaves the user's device, the Chrome Extension uses `crypto.subtle.digest` to convert it into a SHA-256 fingerprint. The NitroStack backend only ever receives and analyzes hashes, ensuring total compliance with modern Fintech data privacy laws (DPDP/GDPR).
+
+### 4. 📈 Dynamic Live-Market Pricing Agent
+* **The Innovation:** Fraudulent listings often rely on "Too Good To Be True" pricing. TrustLayer doesn't rely on static, stale databases.
+* **The Uniqueness:** The `ListingService` Agent executes a live DuckDuckGo web search, scrapes current market snippets, calculates the mathematical median price, and strictly enforces a 20% anomaly threshold against brand benchmarks (e.g., Apple, Realme). It calculates exact percentage deviations:
+  $$\text{Deviation (\%)} = \left| \frac{\text{Listed Price} - \text{Market Median}}{\text{Market Median}} \right| \times 100$$
+
 ---
 
-## 🌟 Key Innovations
+## ⚙️ The Multi-Agent Pipeline Architecture
 
-1. **QR Payment Inversion Detection:** TrustLayer intercepts QR codes in chats, decodes the raw `upi://pay` payload, and semantically compares it against the seller's chat messages. If the QR requests a payment while the seller claims a "refund", an immediate **Financial Fraud Alert** is triggered.
-2. **Physical-World Verification (In-Platform P1):** TrustLayer can autonomously inject a random challenge code (e.g., `TL-8472`) into the marketplace chat box. It uses a DOM `MutationObserver` to detect when the seller uploads a verification photo, piping it through real **Tesseract.js OCR** to verify possession.
-3. **Privacy-First SHA-256 Hashing:** Before transmitting any PII (Phone numbers, emails) from the page to the backend, the extension hashes the data using `crypto.subtle.digest`. The backend only evaluates cryptographic fingerprints.
-4. **Live Market Price Intelligence:** The `ListingService` executes live DuckDuckGo web searches, calculates mathematical medians, and compares them against hardcoded brand benchmarks to detect "Too Good To Be True" FOMO pricing traps.
 
----
-
-## 💻 Setup & Installation
-
-### Prerequisites
-* Node.js v18.0.0+
-* Git
-* Google Chrome (For extension loading)
-
-### 1. Start the NitroStack Backend
-```bash
-git clone https://github.com/your-org/trustlayer-ai.git
-cd trustlayer-ai
-npm install
-cp .env.example .env
-
-# Start the NitroStack DI container and API router
-npm run dev
 ```
 
-### 2. Load the TrustLayer Chrome Extension
-1. Open Google Chrome and navigate to `chrome://extensions/`.
-2. Toggle **Developer mode** ON (top right).
-3. Click **Load unpacked** and select the folder:
-   `trustlayer-ai/frontend/extension`
-4. The TrustLayer shield icon will appear in your browser!
+┌─────────────────────────┐
+│  Frontend Interceptor   │ (Extracts DOM, QR Payloads & SHA-256 Hashed PII)
+└────────────┬────────────┘
+│
+▼
+┌─────────────────────────┐
+│   NitroStack Services   │ (Payment, Listing, Conversation & Identity Agents)
+└────────────┬────────────┘
+│
+▼
+┌─────────────────────────┐
+│  Evidence Fusion Engine │ (Calculates Time-Decayed Risk Claims)
+└────────────┬────────────┘
+│
+▼
+┌─────────────────────────┐
+│    Bounded Autonomy     │ (Triggers In-Browser Interventions & UI Alerts)
+└─────────────────────────┘
+
+```
+
+1. **The Senses (Frontend Interceptor):** The extension silently monitors the page, extracting the Title, Price, Description, and Full Page Text (including hidden QR payloads). It hashes PII and sends the payload to the backend.
+2. **The Brain (NitroStack Services):** Data is routed to specialized, decoupled NitroStack Tools:
+   * `PaymentService`: Analyzes QR/UPI payloads for semantic inversions.
+   * `ListingService`: Checks for extreme price anomalies.
+   * `ConversationService`: Scans for high-pressure urgency and psychological manipulation.
+   * `IdentityService`: Queries live RDAP WHOIS registries to detect burner domains.
+3. **The Judge (Evidence Fusion):** Instead of relying on raw LLM output (which risks hallucination), our Agents emit mathematical **Claims**. The `PolicyService` aggregates these claims using a time-decayed multiplicative risk algorithm to generate a final Posterior Risk Score.
+4. **The Muscle (Bounded Autonomy):** Based on the exact risk score, TrustLayer autonomously executes actions in the browser—from halting off-platform links to rendering glowing red fraud alerts.
 
 ---
 
-## 🧪 How to Demo (Hackathon Guide)
+## 🛠️ Pure NitroStack Architecture
 
-### Scenario A: Testing on Real OLX (`olx.in`)
-1. Open any listing or chat page on `https://www.olx.in`.
-2. Click the floating cyan TrustLayer shield button in the bottom-right corner.
-3. Watch the NitroStack backend extract context, run evidence fusion, and render the safety dashboard.
+This project pushes the capabilities of the official `@nitrostack/core` TypeScript SDK:
 
-### Scenario B: The Fake QR Scam (Mock Marketplace)
-1. Open the file `trustlayer-ai/mock-marketplace/index.html` in Chrome.
-2. Select **"Scenario 3: Fake QR / Refund Scam"** from the top bar.
-3. Click the TrustLayer shield icon.
-4. **The Result:** The backend will detect the `upi://pay` string in the hidden page text, cross-reference it against the seller's claim of a "refund", and blast a highly visible red **🚨 FINANCIAL FRAUD ALERT** telling the user explicitly not to scan the QR.
+* **`@Injectable()` DI Container:** The entire architecture is decoupled into distinct domains (`ContextService`, `PolicyService`, `PaymentService`) managed natively by NitroStack Dependency Injection.
+* **Strict `@Tool()` Decorators:** We expose precise Agentic capabilities validated strictly by **Zod schemas**, ensuring deterministic inputs and outputs.
+* **Context Preservation:** Every invocation utilizes NitroStack's `ExecutionContext` to track distributed tracing and transaction lifecycles, proving enterprise-grade readiness.
 
 ---
 
-## ⚖️ Hackathon Compliance
-Built specifically for the **Fintech Track** of the NitroStack × Amrita Hackathon. All core logic heavily utilizes the official `@nitrostack/core` TypeScript SDK.
+## 🚀 Getting Started
+
+### Prerequisites
+* Node.js >= 18.x
+* npm / pnpm / yarn
+* Google Chrome (or Chromium-based browser)
+
+### Installation & Setup
+
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/your-username/trustlayer-ai.git](https://github.com/your-username/trustlayer-ai.git)
+   cd trustlayer-ai
+
+```
+
+2. **Install Dependencies:**
+```bash
+npm install
+
+```
+
+
+3. **Environment Setup:** Create a `.env` file in the root directory and configure your keys:
+```env
+PORT=3000
+NITROSTACK_API_KEY=your_nitrostack_key
+
+```
+
+
+4. **Start the NitroStack Server:**
+```bash
+npm run dev
+
+```
+
+
+5. **Load Extension in Browser:**
+* Open Chrome and navigate to `chrome://extensions/`
+* Enable **Developer mode** (top right toggle).
+* Click **Load unpacked** and select the `dist/extension` or `extension` folder.
+
+
+
+---
+
+## 📄 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+```
+
+```
