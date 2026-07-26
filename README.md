@@ -170,33 +170,76 @@ The complete test suite ([src/test-p2-tools.ts](file:///c:/Users/Srishanth%20S/D
 
 ---
 
-## 🏗️ 7. System Architecture & Component Flow
+## 🏗️ 7. Verified End-to-End System Architecture
+
+### 🎨 Visual Architecture Diagram (arch.jpeg)
+
+![TrustLayer AI Architecture Diagram](arch.jpeg)
+
+---
+
+### 🧩 Detailed System Component Flow
 
 ```
-                               ┌────────────────────────────────────────────────┐
-                               │             BROWSER EXTENSION                  │
-                               │  - content.js (DOM Scraper, Link Interceptor)   │
-                               │  - popup.js (Safety Coach UI, Glassmorphism)   │
-                               └───────────────────────┬────────────────────────┘
-                                                       │
-                                                       ▼ REST API (Port 3000)
-                               ┌────────────────────────────────────────────────┐
-                               │           NITROSTACK HTTP TRANSPORT            │
-                               │               (src/api-router.ts)              │
-                               └───────────────────────┬────────────────────────┘
-                                                       │
-                               ┌───────────────────────┴────────────────────────┐
-                               │            NITROSTACK DI SERVICES              │
-                               ├────────────────────────────────────────────────┤
-                               │ ├── ListingService     (Market Price Anomaly)  │
-                               │ ├── IdentityService    (RDAP WHOIS Domain)     │
-                               │ ├── ConversationService (Multilingual Scam)    │
-                               │ ├── PaymentService     (QR Inversion Check)    │
-                               │ ├── ContextService     (Disk Persistence DB)   │
-                               │ ├── PolicyService      (Multiplicative Fusion) │
-                               │ ├── RiskEvaluatorService(Benign Self-Check)    │
-                               │ └── RecoveryService    (CyberCrime Drafts)     │
-                               └────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                   CLIENT & PRESENTATION LAYER                                  │
+│                                                                                                │
+│   ┌──────────────────────────────────────────────┐    ┌────────────────────────────────────┐   │
+│   │         CHROME EXTENSION (MANIFEST V3)       │    │     MOCK MARKETPLACE TESTBED       │   │
+│   │  • content.js (DOM Scraper, Link Intercept)  │◄──►│  • mock-marketplace/index.html     │   │
+│   │  • popup.js (Safety Coach Glassmorphism UI)  │    │  • Interactive Test Scenarios      │   │
+│   └──────────────────────┬───────────────────────┘    └────────────────────────────────────┘   │
+└──────────────────────────┼─────────────────────────────────────────────────────────────────────┘
+                           │
+                           │ REST API (HTTP Port 3000)
+                           ▼
+┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                NITROSTACK DUAL TRANSPORT LAYER                                 │
+│                                                                                                │
+│   ┌────────────────────────────────────────────────────────────────────────────────────────┐   │
+│   │                               src/api-router.ts                                        │   │
+│   │  • POST /api/analyze         ──► Scrapes Page, invokes Intelligence Services           │   │
+│   │  • POST /api/verify-upload   ──► Receives Photo, runs Tesseract.js OCR verification    │   │
+│   │  • GET  /api/transaction/:id ──► Returns live TrustContext object                      │   │
+│   └────────────────────────────────────────┬───────────────────────────────────────────────┘   │
+└────────────────────────────────────────────┼───────────────────────────────────────────────────┘
+                                             │
+                                             ▼
+┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                               NITROSTACK CORE DI CONTAINER MODULE                              │
+│                                                                                                │
+│   ┌────────────────────────────────────────────────────────────────────────────────────────┐   │
+│   │                  SECURITY GUARDS (@UseGuards)                                          │   │
+│   │  • PromptInjectionGuard (Blocks adversarial chat instructions e.g. "ignore rules")     │   │
+│   │  • RedactionGuard       (Sanitizes API keys, JWTs, and raw credentials)                │   │
+│   └────────────────────────────────────────┬───────────────────────────────────────────────┘   │
+│                                            │                                                   │
+│   ┌────────────────────────────────────────▼───────────────────────────────────────────────┐   │
+│   │                  INTELLIGENCE TOOL CONTROLLERS (@Tool)                                 │   │
+│   │  • ListingService     (src/modules/listing/listing.service.ts)                        │   │
+│   │  • ConversationService(src/modules/conversation/conversation.service.ts)                │   │
+│   │  • IdentityService    (src/modules/identity/identity.service.ts)                    │   │
+│   │  • PaymentService     (src/modules/payment/payment.service.ts)                        │   │
+│   └────────────────────────────────────────┬───────────────────────────────────────────────┘   │
+│                                            │ Emits Structured ClaimInputs                      │
+│                                            ▼                                                   │
+│   ┌────────────────────────────────────────────────────────────────────────────────────────┐   │
+│   │                  CORE REASONING & POLICY ENGINE                                        │   │
+│   │  • ContextService      (Append-only TrustContext Claim Graph)                          │   │
+│   │  • PolicyService       (Multiplicative Fusion R = 1 - ∏(1 - s*w*t) & Bounded Decision) │   │
+│   │  • RiskEvaluatorService(Adversarial Benign Explanation Check to prevent false positives)│   │
+│   │  • RecoveryService     (CyberCrime Complaint & Recovery Guidance Generator)            │   │
+│   └────────────────────────────────────────┬───────────────────────────────────────────────┘   │
+└────────────────────────────────────────────┼───────────────────────────────────────────────────┘
+                                             │
+                       ┌─────────────────────┼─────────────────────┐
+                       │                     │                     │
+                       ▼                     ▼                     ▼
+┌──────────────────────────────┐ ┌──────────────────────┐ ┌──────────────────────────────┐
+│     EXTERNAL INTEGRATIONS    │ │  WEB WHOIS & SEARCH  │ │        STORAGE LAYER         │
+│  • Tesseract.js (Backend OCR)│ │  • rdap.org (WHOIS)  │ │  • data/trust_contexts.json  │
+│  • OpenAI (GPT-4o Reasoning) │ │  • DuckDuckGo Scraper│ │    (Persistent Disk Database)│
+└──────────────────────────────┘ └──────────────────────┘ └──────────────────────────────┘
 ```
 
 ---
