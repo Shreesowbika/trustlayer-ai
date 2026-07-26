@@ -46,7 +46,7 @@ This project is built strictly around the **official `@nitrostack/core` TypeScri
 
 ## 🏗️ Architecture & Agent Workflow
 
-![alt text](architecture.png)
+![TrustLayer AI Architecture](architecture.png)
 ---
 
 ## 🌟 Key Innovations
